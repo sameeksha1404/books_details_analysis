@@ -1,0 +1,133 @@
+
+### Aggregation Queries
+1. **Group by Genre and Count Books in Each Genre**:
+   
+   db.books_collection.aggregate([
+       { $group: { _id: "$genre", count: { $sum: 1 } } }
+   ])
+   ```
+
+2. **Find the Max Price by Genre**:
+   
+   db.books_collection.aggregate([
+       { $group: { _id: "$genre", maxPrice: { $max: "$price" } } }
+   ])
+   ```
+
+3. **Find the Min Price by Genre**:
+      db.books_collection.aggregate([
+       { $group: { _id: "$genre", minPrice: { $min: "$price" } } }
+   ])
+   ```
+
+4. **List Books that are Available**:
+      db.books_collection.find({ availability: "In stock" })
+   ```
+
+5. **Find the Average Price of the Books**:
+      db.books_collection.aggregate([
+       { $group: { _id: null, averagePrice: { $avg: "$price" } } }
+   ])
+   ```
+
+### Selection Queries
+6. **Find Documents Where Genre is "Poetry"**:
+     db.books_collection.find({ genre: "Poetry" })
+   ```
+
+7. **Find Documents Where Availability is "In Stock" and Genre is "Poetry"**:
+   
+   db.books_collection.find({ availability: "In stock", genre: "Poetry" })
+   ```
+
+8. **Find Documents Where Genre is Either "Fiction" or "Non-Fiction"**:
+     db.books_collection.find({ genre: { $in: ["Fiction", "Non-Fiction"] } })
+   ```
+
+9. **Find Documents Where Title is "A Light in the Attic"**:
+      db.books_collection.find({ title: "A Light in the Attic" })
+   ```
+
+10. **Find Documents Where Genre is "Poetry" or Availability is "Out of Stock"**:
+    
+    db.books_collection.find({
+        $or: [{ genre: "Poetry" }, { availability: "Out of stock" }]
+    })
+    ```
+
+11. **Find Documents Where Genre is Not "Poetry"**:
+   
+    db.books_collection.find({ genre: { $ne: "Poetry" } })
+    ```
+
+12. **Find Documents Where Availability is "In Stock" and Genre is "Science Fiction"**:
+        db.books_collection.find({ availability: "In stock", genre: "Science Fiction" })
+    ```
+
+13. **Find Documents Where Description is Not Empty**:
+       db.books_collection.find({ description: { $ne: "" } })
+    ```
+
+14. **Find Documents Where ISBN is Not Equal to a Specific Value**:
+       db.books_collection.find({ ISBN: { $ne: "specific_isbn_value" } })
+    ```
+
+15. **Find Documents Where Genre is Either "Biography" or "Historical Fiction"**:
+       db.books_collection.find({ genre: { $in: ["Biography", "Historical Fiction"] } })
+    ```
+
+16. **Find Documents Where Title Does Not Contain "The"**:
+        db.books_collection.find({ title: { $not: /The/ } })
+    ```
+
+17. **Find Documents Where Genre is "Fantasy" or Availability is "In Stock"**:
+       db.books_collection.find({
+        $or: [{ genre: "Fantasy" }, { availability: "In stock" }]
+    })
+    ```
+
+18. **Find Documents Where Title Contains "Guide" but Genre is Not "Reference"**:
+       db.books_collection.find({
+        title: /Guide/,
+        genre: { $ne: "Reference" }
+    })
+    ```
+
+19. **Find Documents Where ISBN is in a Specific List**:
+        db.books_collection.find({ ISBN: { $in: ["isbn1", "isbn2", "isbn3"] } })
+    ```
+
+20. **Find Books Whose Title Starts with ‘O’ and Availability is "In Stock"**:
+        db.books_collection.find({ title: /^O/, availability: "In stock" })
+    ```
+
+### Updation Queries
+21. **Update the Publication Date for "A Light in the Attic"**:
+        db.books_collection.updateOne(
+        { title: "A Light in the Attic" },
+        { $set: { "details.publicationDate": "new_date" } }
+    )
+    ```
+
+22. **Add a "discount" Field with Value "No Discount" to All Documents**:
+        db.books_collection.updateMany(
+        {},
+        { $set: { discount: "No Discount" } }
+    )
+    ```
+
+23. **Remove the "discount" Field from All Documents**:
+       db.books_collection.updateMany(
+        {},
+        { $unset: { discount: "" } }
+    )
+    ```
+
+### Deletion Queries
+24. **Delete Records with Title "dummy book"**:
+        db.books_collection.deleteMany({ title: "dummy book" })
+    ```
+
+25. **Delete Records with Genre "dummy genre"**:
+        db.books_collection.deleteMany({ genre: "dummy genre" })
+    ```
