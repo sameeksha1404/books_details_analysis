@@ -1,1 +1,3 @@
-# books_details_analysis
+This uses web scraping and data analysis to design and  gather comprehensive book details from a specified website and store them in MongoDB for in-depth analysis. This project leverages Python’s BeautifulSoup and Requests libraries to efficiently scrape data such as book titles, availablity, genres, isbn, description, and prices. Once collected, the data is organized and stored in MongoDB, a NoSQL database that supports flexible schema designs ideal for handling diverse book attributes.
+
+Using MongoDB's aggregation framework, it enables detailed analytics, uncovering insights like popular genres,  price trends over time. These analytics can provide valuable information for readers, researchers, and online bookstores to understand reading trends and preferences. 
