@@ -4,7 +4,7 @@ Using MongoDB's aggregation framework, it enables detailed analytics, uncovering
 
 
 The source data is web content scraped from the website Books to Scrape. Specifically, the script targets the book catalog pages on this site. 
-1.	Base URL: The script uses https://books.toscrape.com/catalogue/page-{}.html as the base URL pattern to access different pages of the book catalog. Each page URL is formed by replacing {} with the page number (from 1 to 5 in this case).
+1.	Base URL: The script uses https://books.toscrape.com/ as the base URL pattern to access different pages of the book catalog. Each page URL is formed by replacing {} with the page number (from 1 to 5 in this case).
 
 2.	Book Listings: On each catalog page, the script looks for HTML elements with the class product_pod, which represents individual book entries. Each entry includes:
 o	Title: Extracted from the title attribute of the <a> tag within the <h3> tag.
