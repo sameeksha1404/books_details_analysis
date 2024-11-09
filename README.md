@@ -9,7 +9,7 @@ The source data is web content scraped from the website Books to Scrape. Specifi
 2.	Book Listings: On each catalog page, the script looks for HTML elements with the class product_pod, which represents individual book entries. Each entry includes:
 o	Title: Extracted from the title attribute of the <a> tag within the <h3> tag.
 o	Price: Extracted from the price_color class.
-o	Availability: Extracted from the availability class.
+
 
 3.	Book Detail Pages: The script follows links to each book's detail page to gather additional information. The detail page includes:
 o	Genre: Extracted from the third breadcrumb link.
